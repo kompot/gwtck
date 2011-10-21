@@ -1,0 +1,5 @@
+<module rename-to='gwteditor'>
+  <inherits name='com.google.gwt.user.User'/>
+  <inherits name="com.gmail.kompotik.gwtck.Gwtck"/>
+  <entry-point class="com.gmail.kompotik.gwtck.client.GwtckEntryPoint"/>
+</module>

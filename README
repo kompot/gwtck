@@ -1,0 +1,10 @@
+Gwtck allows you to use CKEditor in GWT applications.
+
+Started as a fork of gwt-ckeditor (http://code.google.com/p/gwt-ckeditor/)
+as it did not allow to use plugins written in GWT to be attached to CKEditor.
+
+Gwtck solves this problem. It uses gradle as its build system.
+
+- `gradlew build` builds JAR attachable to your GWT project
+- `gradlew devmode` allows you to watch wrapped CKEditor in action (feel free
+  to modify EntryPoint and see what happens)
