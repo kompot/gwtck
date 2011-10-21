@@ -1,6 +1,7 @@
 .gradle
 *.ipr
 *.iws
+*.iml
 build
 ckeditor-trunk
 ckeditor-release
