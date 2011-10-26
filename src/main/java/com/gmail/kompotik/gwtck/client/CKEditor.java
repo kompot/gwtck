@@ -180,6 +180,29 @@ public class CKEditor extends Composite implements HasSaveHandlers<CKEditor>,
 	return e.getSelection();
   }-*/;
 
+  public native String getSelectedHtml() /*-{
+    var e = this.@com.gmail.kompotik.gwtck.client.CKEditor::editor;
+    var selection = e.getSelection();
+    if (selection) {
+    var bookmarks = selection.createBookmarks(),
+        range = selection.getRanges()[ 0 ],
+        fragment = range.clone().cloneContents();
+
+      selection.selectBookmarks( bookmarks );
+
+      var retval = "",
+         childList = fragment.getChildren(),
+         childCount = childList.count();
+      for ( var i = 0; i < childCount; i++ )
+      {
+         var child = childList.getItem( i );
+         retval += ( child.getOuterHtml?
+            child.getOuterHtml() : child.getText() );
+      }
+      return retval;
+    }
+  }-*/;
+
   /**
    * Initialize the editor
    */
