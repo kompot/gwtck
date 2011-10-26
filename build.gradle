@@ -10,13 +10,20 @@ version = '0.0.1'
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
 
-ideaProject {
-  javaVersion = '1.6'
+idea {
+  project {
+    jdkName = '1.6'
+    ipr {
+      withXml { provider ->
+        provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
+      }
+    }
+  }
 }
 
 repositories {
-  mavenRepo urls: ["http://repo1.maven.org/maven2"]
-  mavenRepo urls: ["http://snapshots.repository.codehaus.org/"]
+  mavenRepo url: "http://repo1.maven.org/maven2"
+  mavenRepo url: "http://snapshots.repository.codehaus.org/"
 }
 
 dependencies {
@@ -81,13 +88,13 @@ task copyCkeditorCompiled(type: Copy) {
 }
 
 task copyGwtXmlSources(type: Copy) {
-  from('src/main/java/com/gmail/kompotik/gwtck') {
+  from('src/main/java') {
     include('**/*.xml')
     include('**/*.gwt.xml')
     include('**/*.png')
     include('**/*.java')
   }
-  into('build/classes/main/com/gmail/kompotik/gwtck')
+  into('build/classes/main')
 }
 
 classes.dependsOn copyGwtXmlSources
@@ -97,5 +104,5 @@ devmode.dependsOn copyCkeditorCompiled
 devmode.dependsOn copyIndexHtml
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.0-milestone-3'
+  gradleVersion = '1.0-milestone-5'
 }
