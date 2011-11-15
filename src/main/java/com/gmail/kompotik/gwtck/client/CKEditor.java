@@ -408,7 +408,7 @@ public class CKEditor extends Composite implements HasSaveHandlers<CKEditor>,
 	 * @param focus
 	 */
 	public void setFocus(boolean focus) {
-		if (replaced == true) {
+		if (replaced) {
 			setNativeFocus(focus);
 		} else {
 			Window.alert("You can't set the focus on startup with the method setFocus(boolean focus).\n"

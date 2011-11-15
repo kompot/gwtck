@@ -19,6 +19,15 @@ idea {
       }
     }
   }
+  // moving project tree to the right
+  workspace {
+    iws {
+      withXml { provider ->
+        provider.node.component.find { it.@name == 'ToolWindowManager' }
+            .layout.window_info.find { it.@id == 'Project' }.@anchor = 'right'
+      }
+    }
+  }
 }
 
 repositories {
@@ -64,6 +73,7 @@ task devmode() << {
     arg(line: '-war ' + dirWar)
     arg(line: '-startupUrl ' + dirEditor + 'index.html')
     arg(line: '-port 8080')
+    arg(line: '-bindAddress 0.0.0.0')
     arg(value: 'com.gmail.kompotik.gwtck.GwtckDevMode')
     classpath {
       pathElement(location: "src/main/java")
@@ -99,7 +109,7 @@ task copyGwtXmlSources(type: Copy) {
 
 classes.dependsOn copyGwtXmlSources
 gwtCompile.dependsOn classes
-devmode.dependsOn gwtCompile
+//devmode.dependsOn gwtCompile
 devmode.dependsOn copyCkeditorCompiled
 devmode.dependsOn copyIndexHtml
 
