@@ -472,13 +472,7 @@ public class CKConfig {
 	}
 
 	private void applyExtraPlugin() {
-		if (!extraPlugins.isEmpty()) {
-			String extraPlugin = extraPlugins.get(0);
-			for (int i = 1; i < extraPlugins.size(); i++) {
-				extraPlugin = extraPlugin.concat("," + extraPlugins.get(i));
-			}
-			setNativeExtraPlugins(extraPlugin);
-		}
+    setNativeExtraPlugins(getPluginsConcat());
 	}
 
 	/**
@@ -742,11 +736,14 @@ public class CKConfig {
 
   private String getPluginsConcat() {
     String result = "";
-    if (plugins.size() == 0) {
+    if (plugins.size() == 0 && extraPlugins.isEmpty()) {
       return result;
     }
     for (CKEditorPlugin plugin : plugins) {
       result += plugin.getPluginName() + ",";
+    }
+    for (String extraPlugin : extraPlugins) {
+      result += extraPlugin + ",";
     }
     return result.substring(0, result.length() - 1);
   }

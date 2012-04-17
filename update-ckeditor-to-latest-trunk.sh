@@ -20,13 +20,17 @@ CKEDITOR_TRUNK="ckeditor-trunk"
 CKEDITOR_RELEASE="ckeditor-release"
 CKEDITOR_MODIFIED="ckeditor-modified"
 GWT_CKEDITOR_PUBLIC="src/main/resources/com/gmail/kompotik/gwtck/public/ckeditor/"
-CKEDITOR_VERSION="3.6.2"
+CKEDITOR_VERSION="3.6.3"
 
 rm -rf $CKEDITOR_TRUNK
 rm -rf $CKEDITOR_RELEASE
 rm -rf $GWT_CKEDITOR_PUBLIC
 mkdir -p $GWT_CKEDITOR_PUBLIC
 svn export http://svn.fckeditor.net/CKEditor/tags/$CKEDITOR_VERSION/ $CKEDITOR_TRUNK
+# work in these 2 lines should be done by `diff` but it behaves weird (?) and compares files in a strange way
+mkdir --parent $CKEDITOR_TRUNK/_source/plugins/imagepaste/
+cp $CKEDITOR_MODIFIED/_source/plugins/imagepaste/plugin.js $CKEDITOR_TRUNK/_source/plugins/imagepaste/
+
 diff -cr $CKEDITOR_TRUNK $CKEDITOR_MODIFIED > modifications.patch
 patch -p0 -i modifications.patch
 rm modifications.patch
