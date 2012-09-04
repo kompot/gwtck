@@ -5,7 +5,7 @@ apply plugin: 'idea'
 
 archivesBaseName = 'gwtck'
 group = 'com.gmail.kompotik'
-version = '0.0.2'
+version = '0.0.3'
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -16,15 +16,6 @@ idea {
     ipr {
       withXml { provider ->
         provider.node.component.find { it.@name == 'VcsDirectoryMappings' }.mapping.@vcs = 'Git'
-      }
-    }
-  }
-  // moving project tree to the right
-  workspace {
-    iws {
-      withXml { provider ->
-        provider.node.component.find { it.@name == 'ToolWindowManager' }
-            .layout.window_info.find { it.@id == 'Project' }.@anchor = 'right'
       }
     }
   }
@@ -72,7 +63,7 @@ task devmode() << {
     jvmarg(value: '-Xmx256M')
     arg(line: '-war ' + dirWar)
     arg(line: '-startupUrl ' + dirEditor + 'index.html')
-    arg(line: '-port 8080')
+    arg(line: '-port 8877')
     arg(line: '-bindAddress 0.0.0.0')
     arg(value: 'com.gmail.kompotik.gwtck.GwtckDevMode')
     classpath {
